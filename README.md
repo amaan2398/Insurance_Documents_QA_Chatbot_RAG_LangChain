@@ -33,23 +33,27 @@ This project implements a sophisticated chatbot that can ingest various insuranc
 
 1.  **Clone the repository:**
 
-    ```bash
+    ```
     git clone https://github.com/amaan2398/Insurance_Documents_QA_Chatbot_RAG_LangChain.git
     cd Insurance_Documents_QA_Chatbot_RAG_LangChain
     ```
 
 2.  **Create and activate a virtual environment (recommended):**
 
-    ```bash
+    ```
     python -m venv venv
     source venv/bin/activate  # On Linux/Mac
+    ```
+
+     ```
+    python -m venv venv
     .\venv\Scripts\activate   # On Windows
     ```
 
 3.  **Install dependencies:**
     *(Note: You may need to modify the requirements based on the specific LLM/Vector Store used in the notebook.)*
 
-    ```bash
+    ```
     pip install -r requirements.txt
     ```
 
@@ -67,7 +71,7 @@ This project implements a sophisticated chatbot that can ingest various insuranc
 
 2.  **Run the Notebook:** Execute the steps in the provided Jupyter Notebook to process the documents and initialize the QA chain.
 
-    ```bash
+    ```
     jupyter notebook langchain_notebook.ipynb
     ```
 
@@ -77,4 +81,4 @@ This project implements a sophisticated chatbot that can ingest various insuranc
 
 The entire workflow, from document loading and processing to setting up the RAG chain and running the QA test cases, is detailed in the following notebook:
 
-  * **My Notebook:** [`langchain_notebook.ipynb`](https://github.com/amaan2398/Insurance_Documents_QA_Chatbot_RAG_LangChain/blob/main/langchain_notebook.ipynb)
+  * **My Notebook:** [`langchain_notebook.ipynb`](https://github.com/amaan2398/Insurance_Documents_QA_Chatbot_RAG_LangChain/blob/main/langchain_notebook.ipynb\)
