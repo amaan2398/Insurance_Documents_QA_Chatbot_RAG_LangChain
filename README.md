@@ -1,72 +1,80 @@
-# Semantic Spotter Project Submission
+# Insurance Documents QA Chatbot (RAG & LangChain)
 
-## 1\. Background
+A Question-Answering (QA) Chatbot designed to efficiently answer queries based on a corpus of insurance documents using the Retrieval-Augmented Generation (RAG) framework, powered by the LangChain library.
 
-This project demonstrates "Build a RAG System" in the insurance domain using LangChain.
+## 🌟 Overview
 
-## 2\. Problem Statement
+This project implements a sophisticated chatbot that can ingest various insurance documents (e.g., policies, terms and conditions) and allow users to ask specific questions about the content. Unlike standard language models, this RAG system ensures that answers are accurate, grounded, and directly traceable back to the source documents, making it ideal for high-stakes domains like insurance.
 
-The goal of the project is to build a robust generative search system capable of effectively and accurately answering questions from a bunch of policy documents.
+## ✨ Features
 
-## 3\. Document
+  * **Document Ingestion:** Easily load and process multiple insurance documents (PDFs, TXT, etc.).
+  * **Retrieval-Augmented Generation (RAG):** Uses a Vector Store to retrieve the most relevant document chunks to inform the Large Language Model (LLM), preventing hallucinations and ensuring factual accuracy.
+  * **Contextual Q\&A:** Provides precise answers to complex policy questions based solely on the loaded insurance knowledge base.
+  * **LangChain Integration:** Leverages LangChain's modular components for efficient document loading, splitting, vectorization, and chaining the retrieval and generation steps.
 
-The policy documents can be found [here](https://github.com/amaan2398/Insurance_Documents_QA_Chatbot_RAG_LangChain/tree/main/Policy%2BDocuments).
+## 🛠️ Technologies & Libraries
 
-## 4\. Approach
+  * **Framework:** [LangChain](https://www.langchain.com/)
+  * **Language Model (LLM):** (e.g., OpenAI, Hugging Face/Llama, or a local model)
+  * **Embedding Model:** (e.g., HuggingFaceEmbeddings, OpenAI Embeddings)
+  * **Vector Store:** (e.g., FAISS, ChromaDB, Pinecone)
+  * **Programming Language:** Python
+  * **Document Loaders:** `PyPDFLoader`, `DirectoryLoader` (or similar)
 
-LangChain is an ideal framework for this project because it simplifies the development of LLM applications. It offers a suite of tools, components, and interfaces that simplify the construction of LLM-centric applications, enabling developers to build applications that can generate creative and contextually relevant content.
+## 🚀 Getting Started
 
-**Why LangChain?**
+### Prerequisites
 
-  * **Versatility and Flexibility:** Enables seamless integration with various data sources, making it a comprehensive solution for creating advanced language model-powered applications.
-  * **Modularity:** Its core design principle is composition and modularity. By combining modules and components, one can quickly build complex LLM-based applications.
-  * **Abstractions and Integrations:** It provides abstractions for most of the functionalities needed for building an LLM application and also has integrations that can readily read and write data, reducing the development speed of the application.
-  * **Model Agnosticism:** The framework allows for building applications that are agnostic to the underlying language model, offering a unique value proposition to build applications and iterate continuously.
+1.  Python 3.8+
+2.  A valid API Key for the chosen LLM (if applicable).
 
-**LangChain Framework Components:**
+### Installation
 
-1.  **Components:** Modular abstractions for the components necessary to work with language models (LLMs & Chat Models, Prompts, Output Parsers, etc.).
-2.  **Use-Case Specific Chains:** Assembling components in particular ways to accomplish a specific use case, serving as a higher-level, customizable interface.
+1.  **Clone the repository:**
 
-**LangChain Building Blocks:**
-
-  * **Model I/O:** Interface with language models (LLMs & Chat Models, Prompts, Output Parsers).
-  * **Retrieval:** Interface with application-specific data (Document loaders, Document transformers, Text embedding models, Vector stores, Retrievers).
-  * **Chains:** Construct sequences/chains of LLM calls.
-  * **Memory:** Persist application state between runs of a chain.
-  * **Agents:** Let chains choose which tools to use given high-level directives.
-  * **Callbacks:** Log and stream intermediate steps of any chain.
-
-## 5\. System Layers
-
-The system design incorporates the following LangChain components:
-
-| Layer | Component | Description |
-| :--- | :--- | :--- |
-| **Reading & Processing PDF Files** | `PyPDFDirectoryLoader` | Used to read and process the PDF files from a specified directory. |
-| **Document Chunking** | `RecursiveCharacterTextSplitter` | The recommended text splitter for generic text. It attempts to keep all paragraphs (and then sentences, then words) together by splitting on a list of characters (default: `["\n\n", "\n", " ", ""]`). |
-| **Generating Embeddings** | `OpenAIEmbeddings` | Used to create a vector representation of text, supporting operations like similarity search. |
-| **Store Embeddings** | `ChromaDB` | Used as the vector store to persist and query the embeddings, backed by LangChain `CacheBackedEmbeddings`. |
-| **Retrievers** | `VectorStoreRetriever` | Provides an interface to return documents given an unstructured query, serving as the backbone for combining documents with the language model. |
-| **Re-Ranking** | `HuggingFaceCrossEncoder` | Used with model `BAAI/bge-reranker-base` to re-rank the initial search results, significantly improving the relevance of retrieved documents. |
-| **Chains** | RAG Chain | Combines multiple components. We are using the pulling prompt `rlm/rag-promp` from the LangChain hub to use in the RAG chain. |
-
-## 6\. System Architecture
-
-*(This section heading is present in the source, but the details were not included in the provided text snippet.)*
-
-## 7\. Prerequisites
-
-  * Python 3.7+
-  * `langchain` 0.3.13
-  * Please ensure that you add your OpenAI API key to the empty text file named **"OpenAI\_API\_Key.txt"** in order to access the OpenAI API.
-
-## 8\. Running
-
-To run the project:
-
-1.  **Clone the GitHub repository:**
     ```bash
-    $ git clone https://github.com/amaan2398/Insurance_Documents_QA_Chatbot_RAG_LangChain.git
+    git clone https://github.com/amaan2398/Insurance_Documents_QA_Chatbot_RAG_LangChain.git
+    cd Insurance_Documents_QA_Chatbot_RAG_LangChain
     ```
-2.  Open the notebook in Jupyter and run all cells.
+
+2.  **Create and activate a virtual environment (recommended):**
+
+    ```bash
+    python -m venv venv
+    source venv/bin/activate  # On Linux/Mac
+    .\venv\Scripts\activate   # On Windows
+    ```
+
+3.  **Install dependencies:**
+    *(Note: You may need to modify the requirements based on the specific LLM/Vector Store used in the notebook.)*
+
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+4.  **Set Environment Variables:**
+    Create a file named `.env` in the root directory and add your keys:
+
+    ```
+    OPENAI_API_KEY="your_openai_key_here"
+    # Or other relevant keys (e.g., HUGGINGFACEHUB_API_TOKEN)
+    ```
+
+### Usage
+
+1.  **Place Documents:** Put all your `.pdf` or `.txt` insurance documents into a dedicated directory (e.g., `data/`).
+
+2.  **Run the Notebook:** Execute the steps in the provided Jupyter Notebook to process the documents and initialize the QA chain.
+
+    ```bash
+    jupyter notebook langchain_notebook.ipynb
+    ```
+
+3.  **Start Chatting:** Follow the final cells of the notebook to input your questions and receive answers based on the insurance documentation.
+
+## 📓 Jupyter Notebook
+
+The entire workflow, from document loading and processing to setting up the RAG chain and running the QA test cases, is detailed in the following notebook:
+
+  * **My Notebook:** [`langchain_notebook.ipynb`](https://github.com/amaan2398/Insurance_Documents_QA_Chatbot_RAG_LangChain/blob/main/langchain_notebook.ipynb)
